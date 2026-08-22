@@ -14,7 +14,7 @@ const Container = styled.div`
   box-sizing: border-box;
 
   @media ${media.mobileM} {
-    padding: 30px 20px;
+    padding: 10px 20px;
   }
 `;
 
@@ -25,32 +25,30 @@ const Content = styled.div`
   gap: 34px;
 
   @media ${media.mobileM} {
-    padding-top: 60px;
-    gap: 40px;
+    gap: 25px;
   }
 `;
 
 const Title = styled.h1`
-  font-size: 27px;
+  font-size: 25px;
   font-weight: 700;
   line-height: 1.2;
   color: #000000;
   word-break: keep-all;
-  margin-bottom: 0;
 
   @media ${media.mobileM} {
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 25px;
+    margin-top: 0;
   }
 `;
 
 const TermsSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 17px;
+  gap: 15px;
 
   @media ${media.mobileM} {
-    gap: 20px;
+    gap: 15px;
   }
 `;
 
@@ -58,20 +56,20 @@ const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
   color: #000000;
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
 
-  input[type="checkbox"] {
+  input[type='checkbox'] {
     display: none;
   }
 
   @media ${media.mobileM} {
     gap: 8px;
-    font-size: 20px;
+    font-size: 15px;
   }
 `;
 
@@ -79,8 +77,8 @@ const CustomCheckIcon = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 6px;
-  background-color: ${({ $checked }) => ($checked ? "#609668" : "#FFFFFF")};
-  border: ${({ $checked }) => ($checked ? "none" : "1px solid #828282")};
+  background-color: ${({ $checked }) => ($checked ? '#609668' : '#FFFFFF')};
+  border: ${({ $checked }) => ($checked ? 'none' : '1px solid #828282')};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,11 +108,11 @@ const CustomCheckIcon = styled.div`
 `;
 
 const TermsBox = styled.div`
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border: 1px solid #e6e6e6;
   border-radius: 12px;
   padding: 14px;
-  line-height: 1.5; 
+  line-height: 1.5;
   box-sizing: border-box;
   word-break: keep-all;
 
@@ -147,7 +145,8 @@ const PolicyItem = styled.div`
     margin: 0 0 3px 0;
   }
 
-  p, ul {
+  p,
+  ul {
     font-size: 10px;
     font-weight: 500;
     color: #707070;
@@ -165,11 +164,12 @@ const PolicyItem = styled.div`
     margin-bottom: 12px;
 
     h2 {
-      font-size: 14px;
+      font-size: 13px;
       margin: 0 0 4px 0;
     }
 
-    p, ul {
+    p,
+    ul {
       font-size: 12px;
     }
   }
@@ -211,7 +211,8 @@ const Privacy = () => {
     <Container>
       <Content>
         <Title>
-          서비스 이용을 위해<br />
+          서비스 이용을 위해
+          <br />
           아래 항목에 동의해 주세요
         </Title>
 
@@ -231,8 +232,8 @@ const Privacy = () => {
           </CheckboxLabel>
 
           <TermsBox className="summary-text">
-            본 약관은 AI 웰니스 서비스 이용 조건 및 절차, 회원의 권리·의무 및 책임
-            사항을 규정합니다. 동의 거부 시 서비스 이용이 제한될 수 있습니다.
+            본 약관은 AI 웰니스 서비스 이용 조건 및 절차, 회원의 권리·의무 및 책임 사항을 규정합니다. 동의 거부 시
+            서비스 이용이 제한될 수 있습니다.
           </TermsBox>
         </TermsSection>
 
@@ -255,8 +256,8 @@ const Privacy = () => {
             <PolicyItem>
               <h2>1. 수집·이용 목적</h2>
               <p>
-                AI 기반 피부 자극 원인 분석과 개인별 피부 반응 데이터를 활용하여
-                사용자 맞춤 솔루션 및 리포트를 제공하기 위함
+                AI 기반 피부 자극 원인 분석과 개인별 피부 반응 데이터를 활용하여 사용자 맞춤 솔루션 및 리포트를 제공하기
+                위함
               </p>
             </PolicyItem>
 
@@ -275,10 +276,7 @@ const Privacy = () => {
 
             <PolicyItem>
               <h2>4. 동의 거부 권리 및 불이익</h2>
-              <p>
-                동의 거부 권리가 있으나, 거부 시 AI 분석 리포트 및 맞춤 루틴 추천
-                서비스 이용이 제한됩니다.
-              </p>
+              <p>동의 거부 권리가 있으나, 거부 시 AI 분석 리포트 및 맞춤 루틴 추천 서비스 이용이 제한됩니다.</p>
             </PolicyItem>
           </TermsBox>
         </TermsSection>

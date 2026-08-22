@@ -40,8 +40,7 @@ export default function ProfileInput() {
   const [ageGroup, setAgeGroup] = useState('');
   const navigate = useNavigate();
 
-  const isValid =
-    NICKNAME_REGEX.test(nickname.trim()) && gender !== '' && ageGroup !== '';
+  const isValid = NICKNAME_REGEX.test(nickname.trim()) && gender !== '' && ageGroup !== '';
 
   useEffect(() => {
     const savedData = getDecryptedData('onboarding_data');
@@ -94,18 +93,10 @@ export default function ProfileInput() {
         <Section>
           <SectionLabel>성별</SectionLabel>
           <GenderGrid>
-            <GenderChip
-              type="button"
-              $selected={gender === 'male'}
-              onClick={() => setGender('male')}
-            >
+            <GenderChip type="button" $selected={gender === 'male'} onClick={() => setGender('male')}>
               남자
             </GenderChip>
-            <GenderChip
-              type="button"
-              $selected={gender === 'female'}
-              onClick={() => setGender('female')}
-            >
+            <GenderChip type="button" $selected={gender === 'female'} onClick={() => setGender('female')}>
               여자
             </GenderChip>
           </GenderGrid>
@@ -114,39 +105,19 @@ export default function ProfileInput() {
         <Section>
           <SectionLabel>나이대</SectionLabel>
           <AgeGrid>
-            <AgeChip
-              type="button"
-              $selected={ageGroup === '10s'}
-              onClick={() => setAgeGroup('10s')}
-            >
+            <AgeChip type="button" $selected={ageGroup === '10s'} onClick={() => setAgeGroup('10s')}>
               10대
             </AgeChip>
-            <AgeChip
-              type="button"
-              $selected={ageGroup === '20s'}
-              onClick={() => setAgeGroup('20s')}
-            >
+            <AgeChip type="button" $selected={ageGroup === '20s'} onClick={() => setAgeGroup('20s')}>
               20대
             </AgeChip>
-            <AgeChip
-              type="button"
-              $selected={ageGroup === '30s'}
-              onClick={() => setAgeGroup('30s')}
-            >
+            <AgeChip type="button" $selected={ageGroup === '30s'} onClick={() => setAgeGroup('30s')}>
               30대
             </AgeChip>
-            <AgeChip
-              type="button"
-              $selected={ageGroup === '40s'}
-              onClick={() => setAgeGroup('40s')}
-            >
+            <AgeChip type="button" $selected={ageGroup === '40s'} onClick={() => setAgeGroup('40s')}>
               40대
             </AgeChip>
-            <AgeChip
-              type="button"
-              $selected={ageGroup === 'etc'}
-              onClick={() => setAgeGroup('etc')}
-            >
+            <AgeChip type="button" $selected={ageGroup === 'etc'} onClick={() => setAgeGroup('etc')}>
               50대 이상
             </AgeChip>
           </AgeGrid>
@@ -165,7 +136,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   min-height: 100%;
-  padding: 30px 20px;
+  padding: 15px 20px 30px 20px;
   box-sizing: border-box;
 `;
 
@@ -199,9 +170,9 @@ const Title = styled.h1`
   word-break: keep-all;
 
   @media ${media.mobileM} {
-    font-size: 28px;
-    margin-top: 120px;
-    margin-bottom: 80px;
+    font-size: 25px;
+    margin-top: 60px;
+    margin-bottom: 40px;
   }
 `;
 
@@ -209,20 +180,20 @@ const Section = styled.div`
   margin-bottom: 28px;
 
   @media ${media.mobileM} {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
 `;
 
 const SectionLabel = styled.h2`
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: #000000;
   margin-top: 0;
   margin-bottom: 10px;
 
   @media ${media.mobileM} {
-    font-size: 20px;
-    margin-bottom: 16px;
+    font-size: 18px;
+    margin-bottom: 15px;
   }
 `;
 

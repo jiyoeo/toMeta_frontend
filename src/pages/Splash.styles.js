@@ -27,7 +27,7 @@ export const BgLayer = styled.div`
 const HOTSPOT_LEFT = '76%';
 const HOTSPOT_TOP = '43%';
 const DR_CENTER_LEFT = '50%';
-const DR_CENTER_TOP = '52%';
+const DR_CENTER_TOP = '45%';
 
 const pulse = keyframes`
   0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.65); }
@@ -101,7 +101,7 @@ export const DrImage = styled.img`
   position: absolute;
   left: ${HOTSPOT_LEFT};
   top: ${HOTSPOT_TOP};
-  width: 65%;
+  width: 60%;
   z-index: 10;
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.15);
@@ -212,7 +212,7 @@ export const NameTag = styled.div`
   display: inline-block;
   background-color: #adeed1;
   color: #04895c;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 700;
   padding: 6px 14px;
   border: 1px solid #609668;
@@ -223,7 +223,7 @@ export const NameTag = styled.div`
 
   @media ${media.mobileM} {
     left: 20px;
-    font-size: 30px;
+    font-size: 20px;
     padding: 10px 18px;
     border-radius: 20px;
     margin-bottom: -10px;
@@ -233,7 +233,6 @@ export const NameTag = styled.div`
 export const MessageBox = styled.div`
   position: relative;
   box-sizing: border-box;
-  height: 110px;
   background-color: #ffffff;
   border: 1px solid #141212;
   border-radius: 16px;
@@ -245,7 +244,7 @@ export const MessageBox = styled.div`
   letter-spacing: -0.5px;
 
   @media ${media.mobileM} {
-    height: 148px;
+    height: 120px;
     border-radius: 20px;
     padding: 20px 22px 26px 30px;
   }
@@ -254,13 +253,13 @@ export const MessageBox = styled.div`
 export const MessageText = styled.p`
   margin: 0;
   white-space: pre-line;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1.3;
   color: #1a1a1a;
 
   @media ${media.mobileM} {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.4;
   }
 `;

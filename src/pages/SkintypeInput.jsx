@@ -117,7 +117,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   min-height: 100%;
-  padding: 30px 20px;
+  padding: 15px 20px 30px 20px;
   box-sizing: border-box;
 `;
 
@@ -151,14 +151,14 @@ const Title = styled.h1`
   word-break: keep-all;
 
   @media ${media.mobileM} {
-    font-size: 28px;
-    margin-top: 120px;
+    font-size: 25px;
+    margin-top: 60px;
   }
 `;
 
 const Advice = styled.p`
   margin-top: 6px;
-  margin-bottom: 80px;
+  margin-bottom: 50px;
   font-size: 16px;
   color: #bfbfbf;
 `;
