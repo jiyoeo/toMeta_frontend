@@ -40,8 +40,7 @@ const HealthConnect = () => {
       try {
         const parsed = JSON.parse(rawData);
         status = parsed.status ?? rawData;
-      } catch {
-      }
+      } catch {}
 
       switch (status) {
         case 'granted':
@@ -146,7 +145,7 @@ export const ContentWrapper = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 27px;
+  font-size: 25px;
   font-weight: 700;
   line-height: 1.35;
   color: #000000;
@@ -154,12 +153,12 @@ export const Title = styled.h1`
   word-break: keep-all;
 
   @media ${media.mobileM} {
-    font-size: 32px;
+    font-size: 25px;
   }
 `;
 
 export const Text = styled.p`
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
   line-height: 1.5;
   color: #918d8d;
@@ -167,7 +166,7 @@ export const Text = styled.p`
   word-break: keep-all;
 
   @media ${media.mobileM} {
-    font-size: 14px;
+    font-size: 13px;
   }
 `;
 

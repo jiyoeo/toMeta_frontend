@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import NavigationBar from '../components/NavigationBar';
 import Img from '../assets/images/dr-acne/surprised-dr.svg';
+import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
 import { media } from '../styles/GlobalStyle';
 
@@ -13,7 +14,7 @@ export default function EmptyPouch() {
 
   return (
     <Container>
-      <Header>화장품</Header>
+      <Header title="화장품 " />
 
       <ContentArea>
         <ImagePlaceholder src={Img} alt="놀란 여박사" />
@@ -38,18 +39,7 @@ const Container = styled.div`
   flex-direction: column;
 
   @media ${media.mobileM} {
-    margin: 30px 20px;
-  }
-`;
-
-const Header = styled.header`
-  text-align: center;
-  font-weight: 700;
-  font-size: 15px;
-  color: #000000;
-
-  @media ${media.mobileM} {
-    font-size: 18px;
+    margin: 0;
   }
 `;
 
@@ -69,13 +59,13 @@ const ContentArea = styled.main`
 `;
 
 const ImagePlaceholder = styled.img`
-  width: 255px;
+  width: 70%;
   height: auto;
   object-fit: contain;
   margin-bottom: 34px;
 
   @media ${media.mobileM} {
-    width: 300px;
+    width: 70%;
     margin-bottom: 40px;
   }
 `;
@@ -83,7 +73,7 @@ const ImagePlaceholder = styled.img`
 const RegisterButton = styled.button`
   width: 187px;
   height: 46px;
-  background-color: transparent;
+  background-color: #ffffff;
   border: 1.5px dashed #b3b3b3;
   border-radius: 8px;
   display: flex;

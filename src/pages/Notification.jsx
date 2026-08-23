@@ -104,34 +104,29 @@ export default function NotificationPermission() {
 
       const profileRes = await updateMyProfile(profilePayload);
       if (!profileRes.data.isSuccess) {
-        throw new Error(
-          profileRes.data.message || '프로필 등록에 실패했습니다.',
-        );
+        throw new Error(profileRes.data.message || '프로필 등록에 실패했습니다.');
       }
 
       const selectedTime = `${pickerValue.hour}:${pickerValue.minute}`;
       const notificationPayload = allowNotification
         ? {
-          dailyReportEnabled: true,
-          recordReminderEnabled: true,
-          recordReminderTime: selectedTime,
-          weeklyReportEnabled: true,
-          weeklyReportTime: selectedTime,
-        }
+            dailyReportEnabled: true,
+            recordReminderEnabled: true,
+            recordReminderTime: selectedTime,
+            weeklyReportEnabled: true,
+            weeklyReportTime: selectedTime,
+          }
         : {
-          dailyReportEnabled: false,
-          recordReminderEnabled: false,
-          recordReminderTime: null,
-          weeklyReportEnabled: false,
-          weeklyReportTime: null,
-        };
+            dailyReportEnabled: false,
+            recordReminderEnabled: false,
+            recordReminderTime: null,
+            weeklyReportEnabled: false,
+            weeklyReportTime: null,
+          };
 
-      const notificationRes =
-        await createNotificationSettings(notificationPayload);
+      const notificationRes = await createNotificationSettings(notificationPayload);
       if (!notificationRes.data.isSuccess) {
-        throw new Error(
-          notificationRes.data.message || '알림 설정 등록에 실패했습니다.',
-        );
+        throw new Error(notificationRes.data.message || '알림 설정 등록에 실패했습니다.');
       }
 
       sessionStorage.removeItem('onboarding_data');
@@ -157,9 +152,7 @@ export default function NotificationPermission() {
           내 피부가 자극받은 원인을
           <br /> 찾으면 알려드릴까요?
         </Title>
-        <SubTitle>
-          매일 밤 리포트와 피부 분석 소식도 함께 알려드릴게요.
-        </SubTitle>
+        <SubTitle>매일 밤 리포트와 피부 분석 소식도 함께 알려드릴게요.</SubTitle>
 
         <IconContainer src={Bell} />
       </ContentWrapper>
@@ -179,12 +172,7 @@ export default function NotificationPermission() {
               <ModalTitle>매일 몇 시에 알림을 드릴까요?</ModalTitle>
 
               <PickerWrapper>
-                <Picker
-                  value={pickerValue}
-                  onChange={setPickerValue}
-                  itemHeight={44}
-                  height={176}
-                >
+                <Picker value={pickerValue} onChange={setPickerValue} itemHeight={44} height={176}>
                   {Object.keys(PICKER_OPTIONS).map((name) => (
                     <Picker.Column key={name} name={name}>
                       {PICKER_OPTIONS[name].map((option) => (
@@ -198,17 +186,13 @@ export default function NotificationPermission() {
                 <HighlightBox />
               </PickerWrapper>
 
-              <NoticeText>
-                알림 시간은 마이 페이지에서 수정이 가능해요.
-              </NoticeText>
+              <NoticeText>알림 시간은 마이 페이지에서 수정이 가능해요.</NoticeText>
 
               <ModalButtonGroup>
                 <ModalSubButton type="button" onClick={closeModal}>
                   취소
                 </ModalSubButton>
-                <Button onClick={() => handleFinalSubmit(true)}>
-                  확인 및 설정 완료
-                </Button>
+                <Button onClick={() => handleFinalSubmit(true)}>확인 및 설정 완료</Button>
               </ModalButtonGroup>
             </ModalContent>
           </ModalOverlay>
@@ -223,7 +207,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   min-height: 100%;
-  padding: 30px 20px;
+  padding: 15px 20px 30px 20px;
   box-sizing: border-box;
   position: relative;
 `;
@@ -261,8 +245,8 @@ const Title = styled.h1`
   word-break: keep-all;
 
   @media ${media.mobileM} {
-    font-size: 28px;
-    margin-top: 120px;
+    font-size: 25px;
+    margin-top: 60px;
   }
 `;
 
@@ -277,7 +261,7 @@ const SubTitle = styled.p`
 
   @media ${media.mobileM} {
     font-size: 16px;
-    margin-bottom: 120px;
+    margin-bottom: 60px;
   }
 `;
 

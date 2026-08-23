@@ -11,13 +11,6 @@ export default function SearchResult() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [isLandscape, setIsLandscape] = useState(true);
-
-  const handleImageLoad = (e) => {
-    const { naturalWidth, naturalHeight } = e.target;
-    setIsLandscape(naturalWidth >= naturalHeight);
-  };
-
   const searchResults = location.state?.searchResults || [];
   const searchId = location.state?.searchId;
 
@@ -73,14 +66,9 @@ export default function SearchResult() {
             <SingleProductCard>
               <ImagePlaceholder>
                 {searchResults[0].imageUrl ? (
-                  <ProductImage
-                    $isLandscape={isLandscape}
-                    src={searchResults[0].imageUrl}
-                    alt={searchResults[0].productName}
-                    onLoad={handleImageLoad}
-                  />
+                  <ProductImage src={searchResults[0].imageUrl} alt={searchResults[0].productName} />
                 ) : (
-                  <img src={Appticon} alt={searchResults[0].productName} />
+                  <ProductImage $fill src={Appticon} alt={searchResults[0].productName} />
                 )}
               </ImagePlaceholder>
               <ProductName>{searchResults[0].productName}</ProductName>
@@ -138,19 +126,23 @@ export default function SearchResult() {
 const Container = styled.div`
   width: 100%;
   max-width: 430px;
-  min-height: 100dvh;
+  height: 100dvh;
   margin: 0 auto;
   position: relative;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
 `;
 
 const Content = styled.main`
   flex: 1;
+  min-height: 0;
   padding: 10px 20px 30px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto;
 `;
 
 const MainTitle = styled.h2`
@@ -181,6 +173,7 @@ const SingleProductCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-bottom: auto;
 
   box-shadow: 2px 2px 2px rgba(73, 73, 73, 0.25);
@@ -191,25 +184,29 @@ const SingleProductCard = styled.div`
 `;
 
 const ImagePlaceholder = styled.div`
-  width: 100%;
-  flex: 1;
-  min-height: 0;
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0;
   background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   text-align: center;
   font-size: 14px;
   font-weight: 700;
   color: #333333;
+
+  @media ${media.mobileM} {
+    width: 200px;
+    height: 200px;
+  }
 `;
 
 const ProductImage = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-  width: ${({ $isLandscape }) => ($isLandscape ? '100%' : 'auto')};
-  height: ${({ $isLandscape }) => ($isLandscape ? 'auto' : '100%')};
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: ${({ $fill }) => ($fill ? 'cover' : 'contain')};
 `;
 
 const ProductName = styled.p`

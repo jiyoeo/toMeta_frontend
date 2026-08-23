@@ -14,7 +14,7 @@ export const Container = styled.div`
 export const Content = styled.main`
   flex: 1;
   min-height: 0;
-  padding: 20px 20px calc(73px + 12px + env(safe-area-inset-bottom, 0px));
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -35,12 +35,7 @@ export const Greeting = styled.h1`
   font-size: 24px;
   font-weight: 700;
   color: #000000;
-  margin-top: 40px;
-  margin-bottom: 0;
-
-  @media ${media.mobileM} {
-    margin-top: 50px;
-  }
+  margin: 20px 0 0;
 `;
 
 export const Divider = styled.div`
@@ -71,11 +66,12 @@ export const ReportCard = styled.section`
   background-color: #ffffff;
   border: 1px solid #b3b3b3;
   border-radius: 30px;
-  box-shadow: 0 6px 6px rgba(31, 41, 51, 0.1);
+  box-shadow: 1px 1px 3px rgba(31, 41, 51, 0.2);
   padding: 20px 20px 16px;
 
   @media ${media.mobileM} {
     padding: 30px 20px;
+    margin-top: 15px;
   }
 `;
 
@@ -144,6 +140,7 @@ export const ReportCardBox = styled.div`
   font-size: 12px;
   line-height: 1.3;
   color: #000000;
+  box-shadow: 1px 1px 3px rgba(31, 41, 51, 0.2);
 
   @media ${media.mobileM} {
     padding: 10px 14px;
@@ -201,7 +198,7 @@ export const AvatarImage = styled.img`
   transform: scaleX(-1);
 
   @media ${media.mobileM} {
-    width: 90px;
+    width: 80px;
   }
 `;
 
@@ -214,7 +211,7 @@ export const TipBubble = styled.div`
   padding: 12px 14px;
   border-radius: 20px;
   flex: 1;
-  box-shadow: 3px 3px 2px rgba(31, 41, 51, 0.2);
+  box-shadow: 1px 1px 3px rgba(31, 41, 51, 0.2);
 
   &::before {
     content: '';
