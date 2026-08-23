@@ -9,6 +9,7 @@ import Header from '../components/Header';
 import CosmeticSelectModal from '../components/modal/CosmeticSelectModal';
 import SetDetailModal from '../components/modal/SetDetailModal';
 import AlreadyRecordedModal from '../components/modal/AlreadyRecordedModal';
+import PhotoActionModal from '../components/modal/PhotoActionModal';
 import CameraImg from '../assets/images/camera.png';
 import DrImg from '../assets/images/dr-acne/dr.normal.svg';
 import * as S from './TodayNote.styles';
@@ -57,7 +58,12 @@ const TodayNote = () => {
     () => setIsAlreadyRecordedModalOpen(false),
   );
 
-  const fileInputRef = useRef(null);
+  const cameraInputRef = useRef(null);
+  const galleryInputRef = useRef(null);
+  const [isPhotoActionOpen, setIsPhotoActionOpen] = useState(false);
+  const closePhotoAction = useModalBackClose(isPhotoActionOpen, () =>
+    setIsPhotoActionOpen(false),
+  );
 
   const formatDateToYYYYMMDD = (date) => {
     const year = date.getFullYear();
@@ -403,8 +409,20 @@ const TodayNote = () => {
   };
 
   const handleCameraClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
+    setIsPhotoActionOpen(true);
+  };
+
+  const handleTakePhoto = () => {
+    closePhotoAction();
+    if (cameraInputRef.current) {
+      cameraInputRef.current.click();
+    }
+  };
+
+  const handlePickFromGallery = () => {
+    closePhotoAction();
+    if (galleryInputRef.current) {
+      galleryInputRef.current.click();
     }
   };
 
@@ -689,8 +707,16 @@ const TodayNote = () => {
           <input
             type="file"
             accept="image/*"
+            capture="environment"
+            ref={cameraInputRef}
+            onChange={handleFileChange}
+            style={{ display: 'none' }}
+          />
+          <input
+            type="file"
+            accept="image/*"
             multiple
-            ref={fileInputRef}
+            ref={galleryInputRef}
             onChange={handleFileChange}
             style={{ display: 'none' }}
           />
@@ -750,6 +776,13 @@ const TodayNote = () => {
       <AlreadyRecordedModal
         isOpen={isAlreadyRecordedModalOpen}
         onClose={closeAlreadyRecordedModal}
+      />
+
+      <PhotoActionModal
+        isOpen={isPhotoActionOpen}
+        onClose={closePhotoAction}
+        onTakePhoto={handleTakePhoto}
+        onPickFromGallery={handlePickFromGallery}
       />
 
       <CosmeticSelectModal
