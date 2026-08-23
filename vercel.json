@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://tometa-server.duckdns.org/api/:path*"
+      "destination": "https://tometa-final.duckdns.org/api/:path*"
     },
     {
       "source": "/(.*)",
