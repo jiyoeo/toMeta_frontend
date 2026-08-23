@@ -99,8 +99,7 @@ export default function SearchCosmetic() {
           <NoticeBox>
             <h4>💡 검색 Tip</h4>
             <p>
-              브랜드 명과 제품 명을 함께 입력하면 훨씬 더 정확하게 찾을 수
-              있어요! <br /> (ex. 피쓰 코어 리빌드 크림)
+              브랜드 명과 제품 명을 함께 입력하면 훨씬 더 정확하게 찾을 수 있어요! <br /> (ex. 피쓰 코어 리빌드 크림)
             </p>
           </NoticeBox>
         </NoticeWrapper>
@@ -139,20 +138,24 @@ export default function SearchCosmetic() {
 const Container = styled.div`
   width: 100%;
   max-width: 430px;
-  min-height: 100dvh;
+  height: 100dvh;
   margin: 0 auto;
   position: relative;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
 `;
 
 const Content = styled.main`
   flex: 1;
+  min-height: 0;
   padding: 10px 20px 30px 20px;
+  overflow-y: auto;
 `;
 
 const MainTitle = styled.h2`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 1.35;
   color: #000000;
@@ -160,8 +163,8 @@ const MainTitle = styled.h2`
   margin-bottom: 50px;
 
   @media ${media.mobileM} {
-    font-size: 28px;
-    margin-top: 170px;
+    font-size: 25px;
+    margin-top: 100px;
   }
 `;
 

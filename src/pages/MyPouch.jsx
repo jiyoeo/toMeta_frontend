@@ -1,21 +1,21 @@
-import { useState, useEffect } from "react";
-import styled from "styled-components";
-import { useNavigate, useLocation } from "react-router-dom";
-import { getCosmeticOptions, deleteMyCosmetic, createCosmeticSet } from "../api/cosmetics";
-import Header from "../components/Header";
-import NavigationBar from "../components/NavigationBar";
-import CosmeticCard from "../components/CosmeticCard";
-import SunIcon from "../assets/images/record/sun.svg";
-import MoonIcon from "../assets/images/record/moon.svg";
-import Trash from "../assets/images/trash.png";
-import { media } from "../styles/GlobalStyle";
-import Portal from "../components/Portal";
-import useModalBackClose from "../hooks/useModalBackClose";
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { getCosmeticOptions, deleteMyCosmetic, createCosmeticSet } from '../api/cosmetics';
+import Header from '../components/Header';
+import NavigationBar from '../components/NavigationBar';
+import CosmeticCard from '../components/CosmeticCard';
+import SunIcon from '../assets/images/record/sun.svg';
+import MoonIcon from '../assets/images/record/moon.svg';
+import Trash from '../assets/images/trash.png';
+import { media } from '../styles/GlobalStyle';
+import Portal from '../components/Portal';
+import useModalBackClose from '../hooks/useModalBackClose';
 
 export default function MyPouch() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState(location.state?.activeTab || "morning");
+  const [activeTab, setActiveTab] = useState(location.state?.activeTab || 'morning');
 
   const [sets, setSets] = useState([]);
   const [cosmetics, setCosmetics] = useState([]);
@@ -23,7 +23,7 @@ export default function MyPouch() {
 
   const [selectedCosmetics, setSelectedCosmetics] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [setName, setSetName] = useState("");
+  const [setName, setSetName] = useState('');
 
   const [isRoutineModalOpen, setIsRoutineModalOpen] = useState(false);
   const [selectedRoutines, setSelectedRoutines] = useState({
@@ -31,13 +31,10 @@ export default function MyPouch() {
     night: false,
   });
 
-  const closeSetModal = useModalBackClose(
-    isModalOpen || isRoutineModalOpen,
-    () => {
-      setIsModalOpen(false);
-      setIsRoutineModalOpen(false);
-    },
-  );
+  const closeSetModal = useModalBackClose(isModalOpen || isRoutineModalOpen, () => {
+    setIsModalOpen(false);
+    setIsRoutineModalOpen(false);
+  });
 
   useEffect(() => {
     setSelectedCosmetics([]);
@@ -52,7 +49,7 @@ export default function MyPouch() {
         setSets(fetchedSets || []);
         setCosmetics(fetchedCosmetics || []);
       } catch (error) {
-        console.error("[MyPouch] 화장품 목록 조회 실패:", error);
+        console.error('[MyPouch] 화장품 목록 조회 실패:', error);
       } finally {
         setLoading(false);
       }
@@ -71,9 +68,7 @@ export default function MyPouch() {
     }
   }, [location.state]);
 
-  const currentTabSets = sets.filter(
-    (set) => set.usageTime === activeTab || set.usageTime === "both"
-  );
+  const currentTabSets = sets.filter((set) => set.usageTime === activeTab || set.usageTime === 'both');
 
   const handleDeleteItem = async (e, id) => {
     e.stopPropagation();
@@ -82,8 +77,8 @@ export default function MyPouch() {
       setCosmetics((prev) => prev.filter((item) => item.userCosmeticId !== id));
       setSelectedCosmetics((prev) => prev.filter((item) => item.userCosmeticId !== id));
     } catch (error) {
-      console.error("[MyPouch] 화장품 삭제 실패:", error);
-      alert(error.message || "화장품 삭제에 실패했습니다.");
+      console.error('[MyPouch] 화장품 삭제 실패:', error);
+      alert(error.message || '화장품 삭제에 실패했습니다.');
     }
   };
 
@@ -117,18 +112,18 @@ export default function MyPouch() {
 
   const handleCreateSet = async () => {
     if (!selectedRoutines.day && !selectedRoutines.night) {
-      alert("낮 또는 밤을 최소 하나 이상 선택해 주세요.");
+      alert('낮 또는 밤을 최소 하나 이상 선택해 주세요.');
       return;
     }
 
-    let usageTime = "both";
+    let usageTime = 'both';
     if (selectedRoutines.day && !selectedRoutines.night) {
-      usageTime = "morning";
+      usageTime = 'morning';
     } else if (!selectedRoutines.day && selectedRoutines.night) {
-      usageTime = "night";
+      usageTime = 'night';
     }
 
-    const name = setName.trim() || "사용자 지정 이름";
+    const name = setName.trim() || '사용자 지정 이름';
 
     try {
       const response = await createCosmeticSet({
@@ -141,20 +136,18 @@ export default function MyPouch() {
         setId: response.data.result.setId,
         name,
         usageTime,
-        tags: [
-          ...new Set(selectedCosmetics.flatMap((c) => c.tags || [])),
-        ].slice(0, 3),
+        tags: [...new Set(selectedCosmetics.flatMap((c) => c.tags || []))].slice(0, 3),
       };
 
       setSets((prev) => [...prev, newSet]);
 
       closeSetModal();
       setSelectedCosmetics([]);
-      setSetName("");
+      setSetName('');
       setSelectedRoutines({ day: false, night: false });
     } catch (error) {
-      console.error("[MyPouch] 세트 생성 실패:", error);
-      alert(error.message || "세트 생성에 실패했습니다.");
+      console.error('[MyPouch] 세트 생성 실패:', error);
+      alert(error.message || '세트 생성에 실패했습니다.');
     }
   };
 
@@ -164,16 +157,10 @@ export default function MyPouch() {
 
       <ContentWrapper>
         <TabGroup>
-          <TabButton
-            $active={activeTab === "morning"}
-            onClick={() => setActiveTab("morning")}
-          >
+          <TabButton $active={activeTab === 'morning'} onClick={() => setActiveTab('morning')}>
             <img src={SunIcon} alt="morning" /> 모닝 스킨케어
           </TabButton>
-          <TabButton
-            $active={activeTab === "night"}
-            onClick={() => setActiveTab("night")}
-          >
+          <TabButton $active={activeTab === 'night'} onClick={() => setActiveTab('night')}>
             <img src={MoonIcon} alt="night" /> 나이트 스킨케어
           </TabButton>
         </TabGroup>
@@ -196,9 +183,7 @@ export default function MyPouch() {
                             <SetTag key={idx}>#{tag}</SetTag>
                           ))}
                         </SetTagGroup>
-                        <ChevronRightIcon onClick={() => handleSetClick(set.setId)}>
-                          ›
-                        </ChevronRightIcon>
+                        <ChevronRightIcon onClick={() => handleSetClick(set.setId)}>›</ChevronRightIcon>
                       </SetCard>
                     ))}
                   </SetListSection>
@@ -209,7 +194,7 @@ export default function MyPouch() {
               <CardListSection>
                 {cosmetics.map((item) => {
                   const isSelected = selectedCosmetics.some(
-                    (selected) => selected.userCosmeticId === item.userCosmeticId
+                    (selected) => selected.userCosmeticId === item.userCosmeticId,
                   );
                   return (
                     <CardWrapper
@@ -219,13 +204,9 @@ export default function MyPouch() {
                     >
                       <CosmeticCard
                         name={item.customName || item.productName}
-                        tags={(item.tags || [])
-                          .slice(0, 5)
-                          .map((tag) => `#${tag}`)}
+                        tags={(item.tags || []).slice(0, 5).map((tag) => `#${tag}`)}
                       />
-                      <DeleteButton
-                        onClick={(e) => handleDeleteItem(e, item.userCosmeticId)}
-                      >
+                      <DeleteButton onClick={(e) => handleDeleteItem(e, item.userCosmeticId)}>
                         <TrashIcon src={Trash} alt="delete" />
                       </DeleteButton>
                     </CardWrapper>
@@ -236,9 +217,7 @@ export default function MyPouch() {
           )}
 
           <ButtonGroup>
-            <ActionButton onClick={() => navigate("/register/search-cosmetic")}>
-              추가하기
-            </ActionButton>
+            <ActionButton onClick={() => navigate('/register/search-cosmetic')}>추가하기</ActionButton>
             <ActionButton
               $isSetButtonActive={selectedCosmetics.length >= 2}
               onClick={() => {
@@ -263,7 +242,7 @@ export default function MyPouch() {
                 {selectedCosmetics[0]?.customName || selectedCosmetics[0]?.productName}
                 {selectedCosmetics.length > 1
                   ? ` 외 ${selectedCosmetics.length - 1}개 제품이 한 세트로 저장돼요`
-                  : "이 한 세트로 저장돼요"}
+                  : '이 한 세트로 저장돼요'}
               </ModalDesc>
               <ModalInput
                 placeholder="세트 이름을 입력해 주세요 (ex. 진정 꿀조합)"
@@ -271,14 +250,8 @@ export default function MyPouch() {
                 onChange={(e) => setSetName(e.target.value)}
               />
               <ModalButtonGroup>
-                <ModalCancelBtn onClick={closeSetModal}>
-                  취소
-                </ModalCancelBtn>
-                <ModalSubmitBtn
-                  onClick={handleFirstModalNext}
-                  disabled={!setName.trim()}
-                  $isActive={!!setName.trim()}
-                >
+                <ModalCancelBtn onClick={closeSetModal}>취소</ModalCancelBtn>
+                <ModalSubmitBtn onClick={handleFirstModalNext} disabled={!setName.trim()} $isActive={!!setName.trim()}>
                   다음
                 </ModalSubmitBtn>
               </ModalButtonGroup>
@@ -291,35 +264,23 @@ export default function MyPouch() {
         <Portal>
           <ModalOverlay onClick={closeSetModal}>
             <RoutineModalContainer onClick={(e) => e.stopPropagation()}>
-              <RoutineModalTitle>
-                언제 사용하는 제품인가요?
-              </RoutineModalTitle>
+              <RoutineModalTitle>언제 사용하는 제품인가요?</RoutineModalTitle>
 
               <RoutineOptions>
-                <RoutineCard
-                  $isSelected={selectedRoutines.day}
-                  onClick={() => toggleRoutine("day")}
-                >
+                <RoutineCard $isSelected={selectedRoutines.day} onClick={() => toggleRoutine('day')}>
                   <ModalSunSvg />
                   <span>낮</span>
                 </RoutineCard>
 
-                <RoutineCard
-                  $isSelected={selectedRoutines.night}
-                  onClick={() => toggleRoutine("night")}
-                >
+                <RoutineCard $isSelected={selectedRoutines.night} onClick={() => toggleRoutine('night')}>
                   <ModalMoonSvg />
                   <span>밤</span>
                 </RoutineCard>
               </RoutineOptions>
 
-              <RoutineModalSubTitle>
-                아침, 밤 둘 다 사용한다면 두 개 모두 선택해 주세요!
-              </RoutineModalSubTitle>
+              <RoutineModalSubTitle>아침, 밤 둘 다 사용한다면 두 개 모두 선택해 주세요!</RoutineModalSubTitle>
 
-              <RoutineSubmitBtn onClick={handleCreateSet}>
-                세트 만들기
-              </RoutineSubmitBtn>
+              <RoutineSubmitBtn onClick={handleCreateSet}>세트 만들기</RoutineSubmitBtn>
             </RoutineModalContainer>
           </ModalOverlay>
         </Portal>
@@ -331,28 +292,14 @@ export default function MyPouch() {
 }
 
 const ModalSunSvg = () => (
-  <svg
-    width="50"
-    height="50"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="#F3B37B"
-    strokeWidth="1.5"
-  >
+  <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#F3B37B" strokeWidth="1.5">
     <circle cx="12" cy="12" r="5" />
     <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
   </svg>
 );
 
 const ModalMoonSvg = () => (
-  <svg
-    width="50"
-    height="50"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="#F3B37B"
-    strokeWidth="1.5"
-  >
+  <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#F3B37B" strokeWidth="1.5">
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
   </svg>
 );
@@ -391,9 +338,9 @@ const TabButton = styled.button`
 
   font-size: 12px;
   font-weight: 700;
-  color: ${(props) => (props.$active ? "#266210" : "gray")};
-  border-bottom: ${(props) => (props.$active ? "2px solid #266210" : "none")};
   background: none;
+  color: ${(props) => (props.$active ? '#266210' : 'gray')};
+  border-bottom: ${(props) => (props.$active ? '2px solid #266210' : 'none')};
   border-top: none;
   border-left: none;
   border-right: none;
@@ -406,9 +353,9 @@ const TabButton = styled.button`
     transition: filter 0.2s ease;
 
     filter: ${(props) =>
-    props.$active
-      ? "brightness(0) saturate(100%) invert(29%) sepia(85%) saturate(750%) hue-rotate(72deg) brightness(88%) contrast(96%)"
-      : "brightness(0) saturate(100%) invert(50%) opacity(0.7)"};
+      props.$active
+        ? 'brightness(0) saturate(100%) invert(29%) sepia(85%) saturate(750%) hue-rotate(72deg) brightness(88%) contrast(96%)'
+        : 'brightness(0) saturate(100%) invert(50%) opacity(0.7)'};
   }
 
   @media ${media.mobileM} {
@@ -452,7 +399,7 @@ const SetCard = styled.div`
   display: flex;
   flex-direction: column;
   gap: 7px;
-  border: 1px solid #96BE9C;
+  border: 1px solid #96be9c;
 
   @media ${media.mobileM} {
     padding: 14px 16px;
@@ -609,16 +556,16 @@ const ButtonGroup = styled.div`
 const ActionButton = styled.button`
   flex: 1;
   padding: 10px 0;
-  background-color: ${(props) => (props.$isSetButtonActive ? "#63BF8E" : "#ffffff")};
-  border: 1px solid ${(props) => (props.$isSetButtonActive ? "#609668" : "#609668")};
-  color: ${(props) => (props.$isSetButtonActive ? "#ffffff" : "#609668")};
+  background-color: ${(props) => (props.$isSetButtonActive ? '#63BF8E' : '#ffffff')};
+  border: 1px solid ${(props) => (props.$isSetButtonActive ? '#609668' : '#609668')};
+  color: ${(props) => (props.$isSetButtonActive ? '#ffffff' : '#609668')};
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
 
   &:active {
-    background-color: ${(props) => (props.$isSetButtonActive ? "#7ca886" : "#f2f7f1")};
+    background-color: ${(props) => (props.$isSetButtonActive ? '#7ca886' : '#f2f7f1')};
   }
 
   @media ${media.mobileM} {
@@ -630,7 +577,7 @@ const ActionButton = styled.button`
 const GuideText = styled.p`
   font-weight: 500;
   font-size: 9px;
-  color: #7C7C7C;
+  color: #7c7c7c;
   text-align: center;
   margin-top: 8px;
   margin-bottom: 0;
@@ -665,7 +612,7 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background: #e6F5E8;
+  background: #e6f5e8;
   width: 100%;
   max-width: 303px;
   min-height: 176px;
@@ -757,11 +704,11 @@ const ModalSubmitBtn = styled.button`
   padding: 8px 0;
   border-radius: 20px;
   border: none;
-  background: ${(props) => (props.$isActive ? "#8cb896" : "#D9D9D9")};
+  background: ${(props) => (props.$isActive ? '#8cb896' : '#D9D9D9')};
   color: #ffffff;
   font-size: 11px;
   font-weight: 600;
-  cursor: ${(props) => (props.$isActive ? "pointer" : "default")};
+  cursor: ${(props) => (props.$isActive ? 'pointer' : 'default')};
 
   @media ${media.mobileM} {
     padding: 10px 0;
@@ -827,8 +774,8 @@ const RoutineOptions = styled.div`
 const RoutineCard = styled.button`
   flex: 1;
   height: 119px;
-  background-color: ${(props) => (props.$isSelected ? "#82BF8B" : "#ffffff")};
-  border: ${(props) => (props.$isSelected ? "1px solid #236F57" : "1px solid #85BBA8")};
+  background-color: ${(props) => (props.$isSelected ? '#82BF8B' : '#ffffff')};
+  border: ${(props) => (props.$isSelected ? '1px solid #236F57' : '1px solid #85BBA8')};
   border-radius: 14px;
   display: flex;
   flex-direction: column;
@@ -836,7 +783,7 @@ const RoutineCard = styled.button`
   justify-content: center;
   gap: 10px;
   cursor: pointer;
-  color: ${(props) => (props.$isSelected ? "#FFFCFC" : "#000000")};
+  color: ${(props) => (props.$isSelected ? '#FFFCFC' : '#000000')};
   font-size: 20px;
   font-weight: 700;
   transition: all 0.2s ease;
@@ -851,7 +798,7 @@ const RoutineCard = styled.button`
 const RoutineSubmitBtn = styled.button`
   width: 100%;
   height: 34px;
-  background-color: #63BF8E;
+  background-color: #63bf8e;
   color: #ffffff;
   border: 1px solid #609668;
   border-radius: 20px;

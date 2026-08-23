@@ -37,7 +37,7 @@ export const GlobalStyle = createGlobalStyle`
     overscroll-behavior-y: none;
     overflow-x: hidden;
 
-    background-color: #fffffa;
+    background-color: #fffffe;
   }
 
   #root {

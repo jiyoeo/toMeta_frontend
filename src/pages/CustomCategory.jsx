@@ -86,7 +86,6 @@ export default function CustomCategory() {
   );
 }
 
-
 const Container = styled.div`
   width: 100%;
   max-width: 430px;
@@ -99,7 +98,7 @@ const Container = styled.div`
 
 const Content = styled.main`
   flex: 1;
-  padding: 30px 20px;
+  padding: 10px 20px 30px 20px;
   display: flex;
   flex-direction: column;
 `;
@@ -120,16 +119,16 @@ const ProgressStep = styled.div`
 `;
 
 const MainTitle = styled.h2`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 1.35;
   color: #000000;
   margin-top: 130px;
-  margin-bottom: 26px;
+  margin-bottom: 50px;
 
   @media ${media.mobileM} {
-    font-size: 28px;
-    margin-top: 170px;
+    font-size: 25px;
+    margin-top: 100px;
   }
 `;
 

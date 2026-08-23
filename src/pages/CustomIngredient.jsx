@@ -71,9 +71,7 @@ export default function CustomIngredient() {
       }
     } catch (error) {
       console.error('화장품 직접 등록 실패:', error);
-      alert(
-        error.message || '등록 중 오류가 발생했습니다. 다시 시도해 주세요.',
-      );
+      alert(error.message || '등록 중 오류가 발생했습니다. 다시 시도해 주세요.');
     } finally {
       setIsSubmitting(false);
     }
@@ -94,18 +92,12 @@ export default function CustomIngredient() {
           입력해 주세요.
         </MainTitle>
 
-        <SubDescription>
-          주요 성분을 최소 1개, 최대 3개까지 입력해 주세요!
-        </SubDescription>
+        <SubDescription>주요 성분을 최소 1개, 최대 3개까지 입력해 주세요!</SubDescription>
 
         <InputWrapper>
           <StyledInput
             type="text"
-            placeholder={
-              ingredients.length >= 3
-                ? '3개가 전부 입력되었어요.'
-                : '성분명을 입력 후 엔터를 눌러주세요.'
-            }
+            placeholder={ingredients.length >= 3 ? '3개가 전부 입력되었어요.' : '성분명을 입력 후 엔터를 눌러주세요.'}
             value={inputIngredient}
             onChange={(e) => setInputIngredient(e.target.value)}
             onKeyDown={handleAddIngredient}
@@ -116,10 +108,7 @@ export default function CustomIngredient() {
           {ingredients.map((item) => (
             <TagChip key={item}>
               <span>{item}</span>
-              <DeleteButton
-                type="button"
-                onClick={() => handleRemoveIngredient(item)}
-              >
+              <DeleteButton type="button" onClick={() => handleRemoveIngredient(item)}>
                 ✕
               </DeleteButton>
             </TagChip>
@@ -127,17 +116,10 @@ export default function CustomIngredient() {
         </TagList>
 
         <BottomButtonGroup>
-          <PrevButton
-            type="button"
-            onClick={handlePrev}
-            disabled={isSubmitting}
-          >
+          <PrevButton type="button" onClick={handlePrev} disabled={isSubmitting}>
             이전
           </PrevButton>
-          <NextButton
-            onClick={handleSubmit}
-            disabled={!isValid || isSubmitting}
-          >
+          <NextButton onClick={handleSubmit} disabled={!isValid || isSubmitting}>
             {isSubmitting ? '등록 중...' : '등록'}
           </NextButton>
         </BottomButtonGroup>
@@ -145,7 +127,6 @@ export default function CustomIngredient() {
     </Container>
   );
 }
-
 
 const Container = styled.div`
   width: 100%;
@@ -159,7 +140,7 @@ const Container = styled.div`
 
 const Content = styled.main`
   flex: 1;
-  padding: 30px 20px;
+  padding: 10px 20px 30px 20px;
   display: flex;
   flex-direction: column;
 `;
@@ -180,16 +161,16 @@ const ProgressStep = styled.div`
 `;
 
 const MainTitle = styled.h2`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 1.35;
   color: #000000;
   margin-top: 130px;
-  margin-bottom: 0;
+  margin-bottom: 0px;
 
   @media ${media.mobileM} {
-    font-size: 28px;
-    margin-top: 170px;
+    font-size: 25px;
+    margin-top: 100px;
   }
 `;
 
