@@ -1240,7 +1240,7 @@ flowchart TD
 ```text
 /api/*
     ↓
-https:// tometa-final.duckdns.org/api/*
+https://tometa-final.duckdns.org/api/*
 ```
 
 Browser 입장에서는 동일 Origin으로 요청하기 때문에 개발 과정에서 CORS와 Cookie 처리 부담을 줄입니다.
@@ -1266,7 +1266,7 @@ API:
 ```text
 /api/:path*
       ↓
-https:// tometa-final.duckdns.org/api/:path*
+https://tometa-final.duckdns.org/api/:path*
 ```
 
 SPA Routing:

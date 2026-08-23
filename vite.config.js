@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https:// tometa-final.duckdns.org',
+        target: 'https://tometa-final.duckdns.org',
         changeOrigin: true,
         secure: false,
       },
