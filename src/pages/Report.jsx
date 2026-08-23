@@ -153,25 +153,25 @@ const Report = () => {
 
   return (
     <Container>
-      <Content>
-        <Header>
-          <NavGroup>
-            <NavButton type="button" onClick={handlePrevMonth}>
-              <NavIcon src={before} alt="이전달" />
-            </NavButton>
-            <NavMonthLabel>{prevMonthLabel}</NavMonthLabel>
-          </NavGroup>
-          <HeaderTitle>
-            {currentYear}년 {currentMonth + 1}월
-          </HeaderTitle>
-          <NavGroup $align="end" $hidden={isCurrentMonthOrFuture}>
-            <NavMonthLabel>{nextMonthLabel}</NavMonthLabel>
-            <NavButton type="button" tabIndex={isCurrentMonthOrFuture ? -1 : 0} onClick={handleNextMonth}>
-              <NavIcon src={after} alt="다음달" />
-            </NavButton>
-          </NavGroup>
-        </Header>
+      <Header>
+        <NavGroup>
+          <NavButton type="button" onClick={handlePrevMonth}>
+            <NavIcon src={before} alt="이전달" />
+          </NavButton>
+          <NavMonthLabel>{prevMonthLabel}</NavMonthLabel>
+        </NavGroup>
+        <HeaderTitle>
+          {currentYear}년 {currentMonth + 1}월
+        </HeaderTitle>
+        <NavGroup $align="end" $hidden={isCurrentMonthOrFuture}>
+          <NavMonthLabel>{nextMonthLabel}</NavMonthLabel>
+          <NavButton type="button" tabIndex={isCurrentMonthOrFuture ? -1 : 0} onClick={handleNextMonth}>
+            <NavIcon src={after} alt="다음달" />
+          </NavButton>
+        </NavGroup>
+      </Header>
 
+      <Content>
         <WeekGrid>
           {['일', '월', '화', '수', '목', '금', '토'].map((day, idx) => (
             <WeekDay key={day} $isSunday={idx === 0}>
@@ -220,7 +220,11 @@ const Report = () => {
 
         <ReportList>
           {reportsToDisplay.map((report) => (
-            <ReportButton key={report.weekNumber} type="button" onClick={() => navigate(`/report/weekly/${report.reportId}`)}>
+            <ReportButton
+              key={report.weekNumber}
+              type="button"
+              onClick={() => navigate(`/report/weekly/${report.reportId}`)}
+            >
               {weekNames[report.weekNumber] || `${report.weekNumber}주차`} 주간 리포트
             </ReportButton>
           ))}
@@ -255,11 +259,15 @@ const Content = styled.main`
   flex: 1;
 `;
 
-const Header = styled.header`
+const Header = styled.div`
+  background-color: #ffffff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   margin-bottom: 24px;
+  padding: 0 20px;
+  height: 61px;
 `;
 
 const HeaderTitle = styled.h2`

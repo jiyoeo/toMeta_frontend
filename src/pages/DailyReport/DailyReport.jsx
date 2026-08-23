@@ -197,8 +197,7 @@ export default function DailyReport({ date }) {
     );
   }
 
-  const isCollecting =
-    reportData?.status === 'collecting' || !reportData?.healthSummary;
+  const isCollecting = !reportData?.hasDailyReport;
   const health = reportData?.healthSummary || {};
   const sleep = formatSleepTime(health?.sleepMinutes);
   const exercise = formatExerciseTime(health?.exerciseDuration);

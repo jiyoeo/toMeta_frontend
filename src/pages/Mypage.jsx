@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Picker from 'react-mobile-picker';
 
+import Header from '../components/Header';
 import NavigationBar from '../components/NavigationBar';
 import Button from '../components/Button';
 import { getMyPageData, updateNotificationSettings } from '../api/user';
@@ -142,7 +143,7 @@ export default function MyPage() {
 
   return (
     <PageContainer>
-      <Header>마이페이지</Header>
+      <Header title="마이페이지" />
 
       <ProfileSection>
         <ProfileAvatar>
@@ -203,35 +204,35 @@ export default function MyPage() {
 
       {isModalOpen && (
         <Portal>
-        <ModalOverlay onClick={closeModal}>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
-            <ModalTitle>{targetReport === 'record' ? '기록 작성' : '주간 리포트'} 알림 시간 설정</ModalTitle>
+          <ModalOverlay onClick={closeModal}>
+            <ModalContent onClick={(e) => e.stopPropagation()}>
+              <ModalTitle>{targetReport === 'record' ? '기록 작성' : '주간 리포트'} 알림 시간 설정</ModalTitle>
 
-            <PickerWrapper>
-              <Picker value={pickerValue} onChange={setPickerValue} itemHeight={44} height={176}>
-                {Object.keys(PICKER_OPTIONS).map((name) => (
-                  <Picker.Column key={name} name={name}>
-                    {PICKER_OPTIONS[name].map((option) => (
-                      <Picker.Item key={option} value={option}>
-                        {option}
-                      </Picker.Item>
-                    ))}
-                  </Picker.Column>
-                ))}
-              </Picker>
-              <HighlightBox />
-            </PickerWrapper>
+              <PickerWrapper>
+                <Picker value={pickerValue} onChange={setPickerValue} itemHeight={44} height={176}>
+                  {Object.keys(PICKER_OPTIONS).map((name) => (
+                    <Picker.Column key={name} name={name}>
+                      {PICKER_OPTIONS[name].map((option) => (
+                        <Picker.Item key={option} value={option}>
+                          {option}
+                        </Picker.Item>
+                      ))}
+                    </Picker.Column>
+                  ))}
+                </Picker>
+                <HighlightBox />
+              </PickerWrapper>
 
-            <NoticeText>설정한 시간에 맞추어 리포트 알림을 보내드려요.</NoticeText>
+              <NoticeText>설정한 시간에 맞추어 리포트 알림을 보내드려요.</NoticeText>
 
-            <ModalButtonGroup>
-              <ModalSubButton type="button" onClick={closeModal}>
-                취소
-              </ModalSubButton>
-              <Button onClick={handleSaveTime}>확인 및 설정 완료</Button>
-            </ModalButtonGroup>
-          </ModalContent>
-        </ModalOverlay>
+              <ModalButtonGroup>
+                <ModalSubButton type="button" onClick={closeModal}>
+                  취소
+                </ModalSubButton>
+                <Button onClick={handleSaveTime}>확인 및 설정 완료</Button>
+              </ModalButtonGroup>
+            </ModalContent>
+          </ModalOverlay>
         </Portal>
       )}
 
@@ -248,21 +249,8 @@ const PageContainer = styled.div`
   position: relative;
 `;
 
-const Header = styled.header`
-  text-align: center;
-  padding: 14px 0;
-  font-weight: 700;
-  font-size: 15px;
-  color: #000000;
-
-  @media ${media.mobileM} {
-    padding: 16px 0;
-    font-size: 18px;
-  }
-`;
-
 const ProfileSection = styled.section`
-  background-color: #ffffff;
+  background: none;
   padding: 26px 0;
   display: flex;
   flex-direction: column;
