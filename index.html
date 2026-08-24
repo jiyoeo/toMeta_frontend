@@ -12,6 +12,19 @@
       href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css"
     />
     <title>ToMeta</title>
+    <script>
+      (function () {
+        function setExplicitHeight() {
+          var h =
+            window.innerHeight > 0
+              ? window.innerHeight
+              : window.screen.availHeight || window.screen.height || 800;
+          document.documentElement.style.height = h + 'px';
+        }
+        setExplicitHeight();
+        window.addEventListener('resize', setExplicitHeight);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
