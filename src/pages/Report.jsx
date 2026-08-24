@@ -271,7 +271,7 @@ const Header = styled.div`
   align-items: center;
   margin-bottom: 24px;
   padding: 0 20px;
-  height: 61px;
+  height: 100px;
   box-sizing: border-box;
 `;
 
