@@ -1,16 +1,7 @@
 import styled from 'styled-components';
 import { media } from '../styles/GlobalStyle';
 
-export default function ReportHeader({
-  title,
-  prevLabel,
-  nextLabel,
-  onPrev,
-  onNext,
-  nextHidden,
-  prevIcon,
-  nextIcon,
-}) {
+export default function ReportHeader({ title, prevLabel, nextLabel, onPrev, onNext, nextHidden, prevIcon, nextIcon }) {
   return (
     <HeaderContainer>
       <NavGroup>
@@ -37,7 +28,8 @@ const HeaderContainer = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  height: 50px;
+  flex-shrink: 0;
+  height: calc(50px + env(safe-area-inset-top, 0px));
   width: 100%;
   display: flex;
   align-items: center;
@@ -46,10 +38,7 @@ const HeaderContainer = styled.header`
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
   z-index: 100;
   background-color: #ffffff;
-
-  @media ${media.mobileM} {
-    height: 61px;
-  }
+  box-sizing: border-box;
 `;
 
 const Title = styled.h1`

@@ -240,11 +240,10 @@ export default Report;
 
 const Container = styled.div`
   max-width: 430px;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0 0 calc(70px + env(safe-area-inset-bottom, 0px)) 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   box-sizing: border-box;
 `;
 
