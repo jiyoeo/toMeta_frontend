@@ -160,7 +160,8 @@ const CloseButton = styled.button`
 `;
 
 const ModalContent = styled.div`
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
