@@ -22,9 +22,24 @@ const Home = () => {
         const res = await getHomeData();
         if (res?.data?.isSuccess) {
           setHomeData(res.data.result);
+        } else {
+          setHomeData({
+            nickname: '사용자',
+            week: { days: [] },
+            yesterdayReport: null,
+            latestDailyReport: null,
+            skinCareTip: '오늘 하루도 건강한 피부 습관을 유지해 보세요!',
+          });
         }
       } catch (error) {
         console.error('홈 데이터 조회 실패:', error);
+        setHomeData({
+          nickname: '사용자',
+          week: { days: [] },
+          yesterdayReport: null,
+          latestDailyReport: null,
+          skinCareTip: '데이터를 불러오는 중 문제가 발생했습니다.',
+        });
       } finally {
         setLoading(false);
       }
