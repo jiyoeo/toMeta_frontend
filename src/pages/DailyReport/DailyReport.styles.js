@@ -599,11 +599,11 @@ export const NoteInputBox = styled.div`
   textarea {
     width: 100%;
     min-height: 90px;
-    padding: 12px 14px;
-    border-radius: 14px;
-    border: 1px solid #10b981;
+    padding: 10px 16px;
+    border-radius: 20px;
+    border: 1px solid #89d7bc;
     background-color: #ffffff;
-    font-size: 13px;
+    font-size: 12px;
     color: #212529;
     resize: none;
     outline: none;

@@ -158,7 +158,7 @@ export const CaptionBubble = styled.p`
   min-height: 1.5em;
   background-color: rgba(0, 0, 0, 0.5);
   color: #ffffff;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 1.5;
   text-align: center;
