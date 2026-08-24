@@ -1,4 +1,3 @@
-
 export const LINE_CHART_CONFIG = {
   '평균 피부온도': {
     dataKey: 'skinTemperature',
@@ -10,8 +9,8 @@ export const LINE_CHART_CONFIG = {
   '운동 소모 칼로리': {
     dataKey: 'totalCaloriesBurned',
     unit: 'kcal',
-    domain: [0, 1000],
-    ticks: [0, 200, 400, 600, 800, 1000],
+    domain: [0, 400],
+    ticks: [0, 100, 200, 300, 400],
   },
   '평균 산소포화도': {
     dataKey: 'avgSpo2',
