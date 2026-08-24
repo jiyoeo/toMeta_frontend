@@ -31,7 +31,7 @@ export default function CustomCategory() {
   const isValid = selectedCategory !== '';
 
   const handlePrev = () => {
-    navigate('/register/custom-name');
+    navigate('/register/custom-name', { state: prevData });
   };
 
   const handleNext = () => {

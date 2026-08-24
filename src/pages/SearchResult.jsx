@@ -36,7 +36,16 @@ export default function SearchResult() {
       });
 
       if (res.data.isSuccess) {
-        navigate('/pouch-redirect');
+        if (location.state?.returnUrl) {
+          navigate(location.state.returnUrl, {
+            state: {
+              restoredForm: location.state.previousForm,
+              reopenModal: true, // 모달 다시 열기 플래그
+            },
+          });
+        } else {
+          navigate('/pouch-redirect'); // 기존 동작 유지
+        }
       } else {
         alert(res.data.message || '화장품 등록에 실패했습니다.');
       }
@@ -49,11 +58,21 @@ export default function SearchResult() {
   };
 
   const handleRetrySearch = () => {
-    navigate('/register/search-cosmetic');
+    navigate('/register/search-cosmetic', {
+      state: {
+        returnUrl: location.state?.returnUrl,
+        previousForm: location.state?.previousForm,
+      },
+    });
   };
 
   const handleGoToCustom = () => {
-    navigate('/register/custom-name');
+    navigate('/register/custom-name', {
+      state: {
+        returnUrl: location.state?.returnUrl,
+        previousForm: location.state?.previousForm,
+      },
+    });
   };
 
   return (
