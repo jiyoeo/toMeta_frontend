@@ -145,18 +145,16 @@ export default function SearchResult() {
 const Container = styled.div`
   width: 100%;
   max-width: 430px;
-  height: 100dvh;
+  height: 100vh;
   margin: 0 auto;
   position: relative;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  overflow: hidden;
 `;
 
 const Content = styled.main`
   flex: 1;
-  min-height: 0;
   padding: 10px 20px 30px 20px;
   display: flex;
   flex-direction: column;
