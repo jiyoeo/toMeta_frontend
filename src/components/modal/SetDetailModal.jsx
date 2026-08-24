@@ -8,28 +8,28 @@ const SetDetailModal = ({ setItem, onClose }) => {
 
   return (
     <Portal>
-    <DetailModalOverlay onClick={onClose}>
-      <DetailModalContainer onClick={(e) => e.stopPropagation()}>
-        <ModalHeader>
-          <ModalTitle>{setItem.name}</ModalTitle>
-          <CloseButton type="button" onClick={onClose}>✕</CloseButton>
-        </ModalHeader>
+      <DetailModalOverlay onClick={onClose}>
+        <DetailModalContainer onClick={(e) => e.stopPropagation()}>
+          <ModalHeader>
+            <ModalTitle>{setItem.name}</ModalTitle>
+            <CloseButton type="button" onClick={onClose}>✕</CloseButton>
+          </ModalHeader>
 
-        <ModalContent>
-          <IndividualSection>
-            {setItem.items?.map((item) => (
-              <DetailCardItem key={item.id}>
-                <CosmeticCard name={item.name} tags={item.tags} />
-              </DetailCardItem>
-            ))}
-          </IndividualSection>
-        </ModalContent>
+          <ModalContent>
+            <IndividualSection>
+              {setItem.items?.map((item) => (
+                <DetailCardItem key={item.id}>
+                  <CosmeticCard name={item.name} tags={item.tags} />
+                </DetailCardItem>
+              ))}
+            </IndividualSection>
+          </ModalContent>
 
-        <ModalFooter>
-          <Button onClick={onClose}>완료</Button>
-        </ModalFooter>
-      </DetailModalContainer>
-    </DetailModalOverlay>
+          <ModalFooter>
+            <Button onClick={onClose}>완료</Button>
+          </ModalFooter>
+        </DetailModalContainer>
+      </DetailModalOverlay>
     </Portal>
   );
 };
@@ -48,15 +48,15 @@ const DetailModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  z-index: 1100;
+  z-index: 1300;
 `;
 
 const DetailModalContainer = styled.div`
   width: 100%;
-  max-height: 85dvh;
+  max-height: 85%;
   background-color: #ffffff;
   border-radius: 20px 20px 0 0;
-  padding: 30px 0 calc(20px + env(safe-area-inset-bottom)) 0;
+  padding: 30px 0 calc(20px + env(safe-area-inset-bottom, 0px)) 0;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
