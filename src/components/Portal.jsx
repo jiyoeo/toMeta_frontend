@@ -1,8 +1,10 @@
 import { createPortal } from 'react-dom';
 
 const Portal = ({ children }) => {
-  const modalRoot = document.getElementById('modal-root');
-  if (!modalRoot) return null;
+  if (typeof window === 'undefined') return null;
+
+  const modalRoot = document.getElementById('modal-root') || document.body;
+
   return createPortal(children, modalRoot);
 };
 
