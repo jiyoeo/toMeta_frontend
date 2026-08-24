@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Portal from '../components/Portal';
@@ -9,6 +9,7 @@ import useModalBackClose from '../hooks/useModalBackClose';
 
 export default function SearchCosmetic() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const closeModal = useModalBackClose(isModalOpen, () => setIsModalOpen(false));
@@ -33,6 +34,8 @@ export default function SearchCosmetic() {
               searchId,
               searchResults: items,
               searchTerm: trimmed,
+              returnUrl: location.state?.returnUrl,
+              previousForm: location.state?.previousForm,
             },
           });
         } else {
@@ -53,7 +56,13 @@ export default function SearchCosmetic() {
   };
 
   const handleGoToCustom = () => {
-    navigate('/register/custom-name', { replace: true });
+    navigate('/register/custom-name', {
+      replace: true,
+      state: {
+        returnUrl: location.state?.returnUrl,
+        previousForm: location.state?.previousForm,
+      },
+    });
   };
 
   return (

@@ -65,7 +65,16 @@ export default function CustomIngredient() {
       const res = await registerCosmeticManual(payload);
 
       if (res.data.isSuccess) {
-        navigate('/pouch-redirect');
+        if (prevData.returnUrl) {
+          navigate(prevData.returnUrl, {
+            state: {
+              restoredForm: prevData.previousForm,
+              reopenModal: true,
+            },
+          });
+        } else {
+          navigate('/pouch-redirect');
+        }
       } else {
         alert(res.data.message || '화장품 등록에 실패했습니다.');
       }

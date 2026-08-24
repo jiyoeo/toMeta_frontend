@@ -1,6 +1,6 @@
 import { useState, useRef, forwardRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/locale';
@@ -27,6 +27,7 @@ import useModalBackClose from '../hooks/useModalBackClose';
 const TodayNote = () => {
   const navigate = useNavigate();
   const { date: paramDate } = useParams();
+  const location = useLocation();
 
   const [selectedDate, setSelectedDate] = useState(
     paramDate ? new Date(paramDate) : new Date(),
@@ -106,41 +107,41 @@ const TodayNote = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchCosmetics = async () => {
-      try {
-        const response = await getCosmeticOptions();
-        if (response.data && response.data.isSuccess) {
-          const { sets = [], cosmetics = [] } = response.data.result || {};
+  const fetchCosmetics = async () => {
+    try {
+      const response = await getCosmeticOptions();
+      if (response.data && response.data.isSuccess) {
+        const { sets = [], cosmetics = [] } = response.data.result || {};
 
-          const formattedSets = sets.map((item) => ({
-            id: item.setId,
-            name: item.name,
-            tags:
-              item.mainIngredients?.map((tag) =>
-                tag.startsWith('#') ? tag : `#${tag}`,
-              ) || [],
-            ...item,
-          }));
+        const formattedSets = sets.map((item) => ({
+          id: item.setId,
+          name: item.name,
+          tags:
+            item.mainIngredients?.map((tag) =>
+              tag.startsWith('#') ? tag : `#${tag}`,
+            ) || [],
+          ...item,
+        }));
 
-          const formattedCosmetics = cosmetics.map((item) => ({
-            id: item.userCosmeticId,
-            name: item.productName,
-            tags:
-              item.mainIngredients?.map((tag) =>
-                tag.startsWith('#') ? tag : `#${tag}`,
-              ) || [],
-            ...item,
-          }));
+        const formattedCosmetics = cosmetics.map((item) => ({
+          id: item.userCosmeticId,
+          name: item.productName,
+          tags:
+            item.mainIngredients?.map((tag) =>
+              tag.startsWith('#') ? tag : `#${tag}`,
+            ) || [],
+          ...item,
+        }));
 
-          setSetProducts(formattedSets);
-          setIndividualProducts(formattedCosmetics);
-        }
-      } catch (error) {
-        console.error('화장품 목록 조회 실패:', error.message);
+        setSetProducts(formattedSets);
+        setIndividualProducts(formattedCosmetics);
       }
-    };
+    } catch (error) {
+      console.error('화장품 목록 조회 실패:', error.message);
+    }
+  };
 
+  useEffect(() => {
     fetchCosmetics();
   }, []);
 
@@ -193,6 +194,38 @@ const TodayNote = () => {
       fetchDailyRecord(targetDate, true);
     }
   }, [paramDate]);
+
+  useEffect(() => {
+    if (location.state?.restoredForm) {
+      const {
+        skinCondition: restoredSkin,
+        morningProducts: restoredMorning,
+        nightProducts: restoredNight,
+        foodInput: restoredFood,
+        noteInput: restoredNote,
+        images: restoredImages,
+        activeType: restoredType,
+        selectedProducts: restoredSelected,
+      } = location.state.restoredForm;
+
+      if (restoredSkin !== undefined) setSkinCondition(restoredSkin);
+      if (restoredMorning) setMorningProducts(restoredMorning);
+      if (restoredNight) setNightProducts(restoredNight);
+      if (restoredFood !== undefined) setFoodInput(restoredFood);
+      if (restoredNote !== undefined) setNoteInput(restoredNote);
+      if (restoredImages) setImages(restoredImages);
+
+      fetchCosmetics();
+
+      if (location.state.reopenModal) {
+        setActiveType(restoredType);
+        setSelectedProducts(restoredSelected || []);
+        setIsModalOpen(true);
+      }
+
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -794,6 +827,16 @@ const TodayNote = () => {
         onToggleProduct={handleToggleProduct}
         onSubmit={handleModalSubmit}
         onOpenDetail={handleOpenDetail}
+        currentFormState={{
+          skinCondition,
+          morningProducts,
+          nightProducts,
+          foodInput,
+          noteInput,
+          images,
+          activeType,
+          selectedProducts,
+        }}
       />
 
       <SetDetailModal

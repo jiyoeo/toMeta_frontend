@@ -14,90 +14,100 @@ const CosmeticSelectModal = ({
   onToggleProduct,
   onSubmit,
   onOpenDetail,
+  currentFormState,
 }) => {
   const navigate = useNavigate();
+
+  const handleAddCosmeticClick = () => {
+    navigate('/register/search-cosmetic', {
+      state: {
+        returnUrl: window.location.pathname, // 현재 TodayNote 경로
+        previousForm: currentFormState,      // 입력 중이던 값들
+      },
+    });
+  };
 
   if (!isOpen) return null;
 
   return (
     <Portal>
-    <ModalOverlay onClick={onClose}>
-      <ModalContainer onClick={(e) => e.stopPropagation()}>
-        <ModalHeader>
-          <ModalTitle>내 화장품</ModalTitle>
-          <CloseButton type="button" onClick={onClose}>
-            ✕
-          </CloseButton>
-        </ModalHeader>
+      <ModalOverlay onClick={onClose}>
+        <ModalContainer onClick={(e) => e.stopPropagation()}>
+          <ModalHeader>
+            <ModalTitle>내 화장품</ModalTitle>
+            <CloseButton type="button" onClick={onClose}>
+              ✕
+            </CloseButton>
+          </ModalHeader>
 
-        <ModalContent>
-          <SetSection>
-            {setProducts.map((setItem) => {
-              const isSelected = selectedProducts.includes(setItem.name);
-              return (
-                <SetCard
-                  key={setItem.id}
-                  $isSelected={isSelected}
-                  onClick={() => onToggleProduct(setItem.name)}
-                >
-                  <SetCardLeft>
-                    <SetTitle>{setItem.name}</SetTitle>
-                    <TagList>
-                      {setItem.tags.map((tag, i) => (
-                        <SetTag key={i} $parentIsSelected={isSelected}>
-                          #{tag}
-                        </SetTag>
-                      ))}
-                    </TagList>
-                  </SetCardLeft>
-                  <ArrowButton
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onOpenDetail(setItem);
-                    }}
+          <ModalContent>
+            <SetSection>
+              {setProducts.map((setItem) => {
+                const isSelected = selectedProducts.includes(setItem.name);
+                return (
+                  <SetCard
+                    key={setItem.id}
+                    $isSelected={isSelected}
+                    onClick={() => onToggleProduct(setItem.name)}
                   >
-                    ＞
-                  </ArrowButton>
-                </SetCard>
-              );
-            })}
-          </SetSection>
+                    <SetCardLeft>
+                      <SetTitle>{setItem.name}</SetTitle>
+                      <TagList>
+                        {setItem.tags.map((tag, i) => (
+                          <SetTag key={i} $parentIsSelected={isSelected}>
+                            #{tag}
+                          </SetTag>
+                        ))}
+                      </TagList>
+                    </SetCardLeft>
+                    <ArrowButton
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onOpenDetail(setItem);
+                      }}
+                    >
+                      ＞
+                    </ArrowButton>
+                  </SetCard>
+                );
+              })}
+            </SetSection>
 
-          <ModalDivider />
+            <ModalDivider />
 
-          <IndividualSection>
-            {individualProducts.map((item) => {
-              const isSelected = selectedProducts.includes(item.name);
-              return (
-                <CardWrapper
-                  key={item.id}
-                  $isSelected={isSelected}
-                  onClick={() => onToggleProduct(item.name)}
-                >
-                  <CosmeticCard
-                    name={item.name}
-                    tags={(item.tags || []).map((tag) =>
-                      tag.startsWith('#') ? tag : `#${tag}`,
-                    )}
-                  />
-                </CardWrapper>
-              );
-            })}
-            <ModalAddCosmeticButton
-              type="button"
-              onClick={() => navigate('/register/search-cosmetic')}
-            >
-              추가하기
-            </ModalAddCosmeticButton>
-          </IndividualSection>
-        </ModalContent>
+            <IndividualSection>
+              {individualProducts.map((item) => {
+                const isSelected = selectedProducts.includes(item.name);
+                return (
+                  <CardWrapper
+                    key={item.id}
+                    $isSelected={isSelected}
+                    onClick={() => onToggleProduct(item.name)}
+                  >
+                    <CosmeticCard
+                      name={item.name}
+                      tags={(item.tags || []).map((tag) =>
+                        tag.startsWith('#') ? tag : `#${tag}`,
+                      )}
+                    />
+                  </CardWrapper>
+                );
+              })}
+              <ModalAddCosmeticButton
+                type="button"
+                onClick={handleAddCosmeticClick}
+              >
+                추가하기
+              </ModalAddCosmeticButton>
+            </IndividualSection>
+          </ModalContent>
 
-        <ModalFooter>
-          <Button onClick={onSubmit}>완료</Button>
-        </ModalFooter>
-      </ModalContainer>
-    </ModalOverlay>
+          <ModalFooter>
+            <Button onClick={onSubmit}>완료</Button>
+          </ModalFooter>
+        </ModalContainer>
+      </ModalOverlay>
     </Portal>
   );
 };
@@ -121,6 +131,7 @@ const ModalOverlay = styled.div`
 
 const ModalContainer = styled.div`
   width: 100%;
+  height: 85dvh;
   max-height: 85dvh;
   background-color: #ffffff;
   border-radius: 20px 20px 0 0;
@@ -160,9 +171,10 @@ const CloseButton = styled.button`
 `;
 
 const ModalContent = styled.div`
-  flex: 1 1 auto;
+  flex: 1;
   min-height: 0;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -345,4 +357,5 @@ const ModalAddCosmeticButton = styled.button`
 const ModalFooter = styled.div`
   margin-top: 16px;
   padding: 0 20px;
+  flex-shrink: 0;
 `;

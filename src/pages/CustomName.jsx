@@ -1,24 +1,36 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { media } from '../styles/GlobalStyle';
 
 export default function CustomName() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [productName, setProductName] = useState('');
 
   const isValid = productName.trim().length > 0;
 
   const handlePrev = () => {
-    navigate('/my-pouch');
+    if (location.state?.returnUrl) {
+      navigate(location.state.returnUrl, {
+        state: {
+          restoredForm: location.state.previousForm,
+          reopenModal: true,
+        },
+      });
+    } else {
+      navigate('/my-pouch');
+    }
   };
+
   const handleNext = () => {
     if (!isValid) return;
 
     navigate('/register/custom-category', {
       state: {
+        ...location.state,
         productName: productName.trim(),
       },
     });
