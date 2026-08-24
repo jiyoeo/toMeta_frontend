@@ -101,9 +101,6 @@ const Report = () => {
         const fetchedWeeklyReports = response.data.result.weeklyReports || [];
         setWeeklyReports(fetchedWeeklyReports);
 
-        // 리포트가 아직 발행 안 된 날짜는, 헬스데이터 없이 기록만 했을 수도 있으니
-        // 일일 기록 API에서 피부 상태만 따로 가져와 캘린더에 색만 입혀준다
-        // (리포트가 없으니 클릭해도 리포트 상세로는 이동하지 않음).
         if (unreportedDates.length > 0) {
           const results = await Promise.allSettled(unreportedDates.map(({ date }) => getDailyRecord(date)));
 

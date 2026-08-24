@@ -38,6 +38,8 @@ const Container = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   @media ${media.mobileM} {
     margin: 0;
