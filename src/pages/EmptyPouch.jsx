@@ -36,8 +36,7 @@ const Container = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
 
   @media ${media.mobileM} {
     margin: 0;
@@ -47,6 +46,7 @@ const Container = styled.div`
 const ContentArea = styled.main`
   flex: 1;
   display: flex;
+  box-sizing: border-box;
   flex-direction: column;
   align-items: center;
   justify-content: center;
