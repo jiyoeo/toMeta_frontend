@@ -45,19 +45,18 @@ const HeaderContainer = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  height: calc(50px + env(safe-area-inset-top, 0px));
+  height: 50px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: env(safe-area-inset-top, 0px);
   box-sizing: border-box;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
   z-index: 100;
   background-color: #ffffff;
 
   @media ${media.mobileM} {
-    height: calc(61px + env(safe-area-inset-top, 0px));
+    height: 61px;
   }
 `;
 
