@@ -29,7 +29,7 @@ const HeaderContainer = styled.header`
   left: 0;
   right: 0;
   flex-shrink: 0;
-  height: calc(50px + env(safe-area-inset-top, 0px));
+  height: 61px;
   width: 100%;
   display: flex;
   align-items: center;
