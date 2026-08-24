@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Header from '../components/Header';
 import Portal from '../components/Portal';
 import { media } from '../styles/GlobalStyle';
@@ -102,6 +102,12 @@ export default function SearchCosmetic() {
               </svg>
             </SearchButton>
           </SearchInputWrapper>
+          {isLoading && (
+            <LoadingStatusWrapper>
+              <Spinner />
+              <span>화장품 정보를 검색하고 있어요...</span>
+            </LoadingStatusWrapper>
+          )}
         </SearchForm>
 
         <NoticeWrapper>
@@ -311,4 +317,28 @@ const ModalButton = styled.button`
   &:hover {
     opacity: 0.85;
   }
+`;
+
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+const LoadingStatusWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #63bf8e;
+`;
+
+const Spinner = styled.div`
+  width: 14px;
+  height: 14px;
+  border: 2px solid #e6f5e8;
+  border-top: 2px solid #63bf8e;
+  border-radius: 50%;
+  animation: ${spin} 0.8s linear infinite;
 `;
