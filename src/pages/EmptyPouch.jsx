@@ -37,6 +37,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+  margin-top: 120px;
 
   @media ${media.mobileM} {
     margin: 0;
