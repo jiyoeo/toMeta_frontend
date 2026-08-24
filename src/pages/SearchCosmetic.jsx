@@ -89,6 +89,8 @@ export default function SearchCosmetic() {
             <SearchButton type="submit" aria-label="검색" disabled={isLoading}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={2}
@@ -194,6 +196,7 @@ const SearchInputWrapper = styled.div`
 
 const Input = styled.input`
   flex: 1;
+  min-width: 0;
   border: none;
   outline: none;
   font-size: 16px;
@@ -234,6 +237,7 @@ const NoticeBox = styled.div`
 `;
 
 const SearchButton = styled.button`
+  flex-shrink: 0;
   background: none;
   border: none;
   cursor: pointer;
@@ -245,6 +249,7 @@ const SearchButton = styled.button`
   svg {
     width: 22px;
     height: 22px;
+    flex-shrink: 0;
     color: #c2c2c2;
   }
 `;

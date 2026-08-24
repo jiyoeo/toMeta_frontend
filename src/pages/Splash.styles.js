@@ -131,7 +131,7 @@ export const SkipButton = styled.button`
   cursor: pointer;
 
   @media ${media.mobileM} {
-    font-size: 24px;
+    font-size: 20px;
   }
 `;
 
@@ -164,9 +164,10 @@ export const CaptionBubble = styled.p`
   text-align: center;
   padding: 10px 15px;
   border-radius: 20px;
+  word-break: keep-all;
 
   @media ${media.mobileM} {
-    font-size: 24px;
+    font-size: 20px;
   }
 `;
 
