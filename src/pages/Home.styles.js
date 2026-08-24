@@ -3,32 +3,33 @@ import { media } from '../styles/GlobalStyle';
 
 export const Container = styled.div`
   max-width: 430px;
-  height: 100dvh;
+  min-height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
   overflow: hidden;
 `;
 
 export const Content = styled.main`
   flex: 1;
-  min-height: 0;
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: start;
   gap: 20px;
-  overflow: hidden;
+  overflow-y: auto;
 `;
 
 export const LoadingWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100dvh;
+  min-height: 100vh;
   font-size: 15px;
   color: #64748b;
+  background-color: #ffffff;
 `;
 
 export const Greeting = styled.h1`

@@ -14,8 +14,24 @@ export default function SearchResult() {
   const searchResults = location.state?.searchResults || [];
   const searchId = location.state?.searchId;
 
-  const [selectedListId, setSelectedListId] = useState(searchResults.length === 1 ? searchResults[0].itemId : null);
+  const [selectedListId, setSelectedListId] = useState(
+    searchResults.length === 1 ? searchResults[0]?.itemId : null
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  if (!searchResults || searchResults.length === 0) {
+    return (
+      <Container>
+        <Header title="검색 결과" variant="back" />
+        <Content>
+          <MainTitle>검색 결과가 없습니다.</MainTitle>
+          <Button onClick={() => navigate('/register/search-cosmetic')}>
+            다시 검색하기
+          </Button>
+        </Content>
+      </Container>
+    );
+  }
 
   const handleConfirmClick = async () => {
     if (isSubmitting) return;
@@ -40,11 +56,11 @@ export default function SearchResult() {
           navigate(location.state.returnUrl, {
             state: {
               restoredForm: location.state.previousForm,
-              reopenModal: true, // 모달 다시 열기 플래그
+              reopenModal: true,
             },
           });
         } else {
-          navigate('/pouch-redirect'); // 기존 동작 유지
+          navigate('/pouch-redirect');
         }
       } else {
         alert(res.data.message || '화장품 등록에 실패했습니다.');
@@ -84,13 +100,13 @@ export default function SearchResult() {
             <MainTitle>이 제품이 맞으신가요?</MainTitle>
             <SingleProductCard>
               <ImagePlaceholder>
-                {searchResults[0].imageUrl ? (
-                  <ProductImage src={searchResults[0].imageUrl} alt={searchResults[0].productName} />
+                {searchResults[0]?.imageUrl ? (
+                  <ProductImage src={searchResults[0].imageUrl} alt={searchResults[0]?.productName} />
                 ) : (
-                  <ProductImage $fill src={Appticon} alt={searchResults[0].productName} />
+                  <ProductImage $fill src={Appticon} alt={searchResults[0]?.productName} />
                 )}
               </ImagePlaceholder>
-              <ProductName>{searchResults[0].productName}</ProductName>
+              <ProductName>{searchResults[0]?.productName}</ProductName>
             </SingleProductCard>
           </>
         ) : (
@@ -145,18 +161,17 @@ export default function SearchResult() {
 const Container = styled.div`
   width: 100%;
   max-width: 430px;
-  height: 100dvh;
+  min-height: 100vh;
   margin: 0 auto;
   position: relative;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  overflow: hidden;
 `;
 
 const Content = styled.main`
   flex: 1;
-  min-height: 0;
+  width: 100%;
   padding: 10px 20px 30px 20px;
   display: flex;
   flex-direction: column;
