@@ -14,9 +14,7 @@ export default function SearchResult() {
   const searchResults = location.state?.searchResults || [];
   const searchId = location.state?.searchId;
 
-  const [selectedListId, setSelectedListId] = useState(
-    searchResults.length === 1 ? searchResults[0]?.itemId : null
-  );
+  const [selectedListId, setSelectedListId] = useState(searchResults.length === 1 ? searchResults[0]?.itemId : null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!searchResults || searchResults.length === 0) {
@@ -25,9 +23,7 @@ export default function SearchResult() {
         <Header title="검색 결과" variant="back" />
         <Content>
           <MainTitle>검색 결과가 없습니다.</MainTitle>
-          <Button onClick={() => navigate('/register/search-cosmetic')}>
-            다시 검색하기
-          </Button>
+          <Button onClick={() => navigate('/register/search-cosmetic')}>다시 검색하기</Button>
         </Content>
       </Container>
     );
@@ -185,7 +181,7 @@ const MainTitle = styled.h2`
   font-weight: 700;
   line-height: 1.35;
   color: #000000;
-  margin-top: 55px;
+  margin-top: 30px;
   margin-bottom: 30px;
 
   width: ${(props) => (props.$alignLeft ? '100%' : 'auto')};
