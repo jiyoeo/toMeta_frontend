@@ -7,7 +7,7 @@ import { agreeConsents } from '../api';
 
 const Container = styled.div`
   padding: 26px 17px;
-  height: 100dvh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

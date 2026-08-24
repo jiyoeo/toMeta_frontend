@@ -16,7 +16,7 @@ const Background = styled.div`
   width: 100%;
   height: 100%;
   min-height: 100%;
-  background-color: #ffffef;
+  background-color: #fffffe;
 `;
 
 const MobileContainer = styled.div`

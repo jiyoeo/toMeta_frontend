@@ -123,7 +123,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100dvh;
+  min-height: 100vh;
   box-sizing: border-box;
   padding: 26px 17px;
 

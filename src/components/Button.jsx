@@ -3,7 +3,8 @@ import { media } from '../styles/GlobalStyle';
 
 const StyledButton = styled.button`
   width: 100%;
-  margin: 0 auto;
+  flex-shrink: 0;
+  margin: 10px auto 0;
   height: 47px;
   background-color: ${(props) => (props.disabled ? '#b3b3b3' : '#63BF8E')};
   color: #ffffff;
@@ -20,19 +21,13 @@ const StyledButton = styled.button`
     background-color: ${(props) => (props.disabled ? '#b3b3b3' : '#63BF8E')};
   }
 
-    @media ${media.mobileM} {
+  @media ${media.mobileM} {
     height: 54px;
     font-size: 16px;
   }
 `;
 
-const Button = ({
-  children,
-  onClick,
-  disabled = false,
-  type = 'button',
-  ...props
-}) => {
+const Button = ({ children, onClick, disabled = false, type = 'button', ...props }) => {
   return (
     <StyledButton onClick={onClick} disabled={disabled} type={type} {...props}>
       {children}
