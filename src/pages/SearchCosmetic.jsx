@@ -147,18 +147,16 @@ export default function SearchCosmetic() {
 const Container = styled.div`
   width: 100%;
   max-width: 430px;
-  height: 100dvh;
+  min-height: 100vh;
   margin: 0 auto;
   position: relative;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  overflow: hidden;
 `;
 
 const Content = styled.main`
   flex: 1;
-  min-height: 0;
   padding: 10px 20px 30px 20px;
   overflow-y: auto;
 `;
@@ -253,9 +251,7 @@ const Overlay = styled.div`
   bottom: 0;
   max-width: 430px;
   margin: 0 auto;
-  background-color: rgba(98, 98, 98, 0.3);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
