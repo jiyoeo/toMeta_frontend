@@ -172,7 +172,7 @@ const Container = styled.div`
 const Content = styled.main`
   flex: 1;
   width: 100%;
-  gap: 20px;
+  gap: 10px;
   padding: 10px 20px 30px 20px;
   display: flex;
   flex-direction: column;
@@ -372,6 +372,7 @@ const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-top: 30px;
 `;
 
 const ButtonGroup = styled.div`
