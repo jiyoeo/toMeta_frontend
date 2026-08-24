@@ -33,8 +33,6 @@ export default function EmptyPouch() {
 const Container = styled.div`
   margin: 0;
   height: 100vh;
-  padding-bottom: calc(73px + env(safe-area-inset-bottom, 0px));
-  padding-top: env(safe-area-inset-top);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
