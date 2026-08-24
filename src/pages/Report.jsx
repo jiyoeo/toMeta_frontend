@@ -246,8 +246,8 @@ export default Report;
 
 const Container = styled.div`
   max-width: 430px;
-  height: 100dvh;
-  margin: 0 0 calc(73px + env(safe-area-inset-bottom, 0px)) 0;
+  height: 100vh;
+  margin: 0 0 calc(70px + env(safe-area-inset-bottom, 0px)) 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -260,6 +260,10 @@ const Content = styled.main`
 `;
 
 const Header = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
   background-color: #ffffff;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
   display: grid;
@@ -268,6 +272,7 @@ const Header = styled.div`
   margin-bottom: 24px;
   padding: 0 20px;
   height: 61px;
+  box-sizing: border-box;
 `;
 
 const HeaderTitle = styled.h2`
