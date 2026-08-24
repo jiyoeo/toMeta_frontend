@@ -36,8 +36,6 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-user-select: none;
     overscroll-behavior-y: none;
     overflow-x: hidden;
-
-    background-color: #fffffe;
   }
 
   #root {
