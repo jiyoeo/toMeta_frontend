@@ -131,11 +131,12 @@ const ModalOverlay = styled.div`
 
 const ModalContainer = styled.div`
   width: 100%;
-  height: 85dvh;
-  max-height: 85dvh;
+  height: 85%;
+  max-height: 85vh;
   background-color: #ffffff;
   border-radius: 20px 20px 0 0;
-  padding: 30px 0 calc(20px + env(safe-area-inset-bottom)) 0;
+  padding-top: 30px;
+  padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
