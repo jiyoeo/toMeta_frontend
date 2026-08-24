@@ -41,22 +41,23 @@ export default function Header({ title, onBack, variant = 'default' }) {
 }
 
 const HeaderContainer = styled.header`
-  position: sticky;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
-  height: 50px;
+  height: calc(50px + env(safe-area-inset-top, 0px));
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding-top: env(safe-area-inset-top, 0px);
+  box-sizing: border-box;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
   z-index: 100;
   background-color: #ffffff;
 
   @media ${media.mobileM} {
-    height: 61px;
+    height: calc(61px + env(safe-area-inset-top, 0px));
   }
 `;
 
