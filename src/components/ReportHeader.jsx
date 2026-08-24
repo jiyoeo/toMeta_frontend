@@ -24,12 +24,12 @@ export default function ReportHeader({ title, prevLabel, nextLabel, onPrev, onNe
 }
 
 const HeaderContainer = styled.header`
-  position: sticky;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
   flex-shrink: 0;
-  height: 61px;
+  height: 50px;
   width: 100%;
   display: flex;
   align-items: center;
