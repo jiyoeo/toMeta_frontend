@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import NavigationBar from '../components/NavigationBar.jsx';
+import ReportHeader from '../components/ReportHeader.jsx';
 import colorBarImg from '../assets/images/colorbar.png';
 import before from '../assets/images/before.png';
 import after from '../assets/images/after.png';
@@ -153,23 +154,16 @@ const Report = () => {
 
   return (
     <Container>
-      <Header>
-        <NavGroup>
-          <NavButton type="button" onClick={handlePrevMonth}>
-            <NavIcon src={before} alt="이전달" />
-          </NavButton>
-          <NavMonthLabel>{prevMonthLabel}</NavMonthLabel>
-        </NavGroup>
-        <HeaderTitle>
-          {currentYear}년 {currentMonth + 1}월
-        </HeaderTitle>
-        <NavGroup $align="end" $hidden={isCurrentMonthOrFuture}>
-          <NavMonthLabel>{nextMonthLabel}</NavMonthLabel>
-          <NavButton type="button" tabIndex={isCurrentMonthOrFuture ? -1 : 0} onClick={handleNextMonth}>
-            <NavIcon src={after} alt="다음달" />
-          </NavButton>
-        </NavGroup>
-      </Header>
+      <ReportHeader
+        title={`${currentYear}년 ${currentMonth + 1}월`}
+        prevLabel={prevMonthLabel}
+        nextLabel={nextMonthLabel}
+        onPrev={handlePrevMonth}
+        onNext={handleNextMonth}
+        nextHidden={isCurrentMonthOrFuture}
+        prevIcon={before}
+        nextIcon={after}
+      />
 
       <Content>
         <WeekGrid>
@@ -257,59 +251,6 @@ const Container = styled.div`
 const Content = styled.main`
   padding: 24px 20px;
   flex: 1;
-`;
-
-const Header = styled.div`
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  width: 100%;
-  background-color: #ffffff;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  margin-bottom: 24px;
-  padding: 0 20px;
-  height: 100px;
-  box-sizing: border-box;
-`;
-
-const HeaderTitle = styled.h2`
-  font-size: 16px;
-  font-weight: 500;
-  color: #000000;
-  margin: 0;
-`;
-
-const NavGroup = styled.div`
-  display: flex;
-  align-items: center;
-  justify-self: ${(props) => (props.$align === 'end' ? 'end' : 'start')};
-  gap: 8px;
-  visibility: ${(props) => (props.$hidden ? 'hidden' : 'visible')};
-  pointer-events: ${(props) => (props.$hidden ? 'none' : 'auto')};
-`;
-
-const NavMonthLabel = styled.span`
-  font-size: 12px;
-  color: #737373;
-`;
-
-const NavButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const NavIcon = styled.img`
-  width: 15px;
-  height: 15px;
-  object-fit: contain;
 `;
 
 const WeekGrid = styled.div`
