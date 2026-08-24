@@ -37,7 +37,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
-  margin-top: 120px;
 
   @media ${media.mobileM} {
     margin: 0;
@@ -63,6 +62,7 @@ const ImagePlaceholder = styled.img`
   height: auto;
   object-fit: contain;
   margin-bottom: 34px;
+  margin-top: 100px;
 
   @media ${media.mobileM} {
     width: 70%;
